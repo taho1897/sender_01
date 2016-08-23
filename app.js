@@ -46,8 +46,6 @@ app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 
 
 
-
-
 app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
