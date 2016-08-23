@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var FacebookTokenStrategy = require('passport-facebook-token');
 var Customer = require('../models/user');
+var isSecure = require('./common').isSecure;
 
 // 1. use로 strategy 함수 만들기 - name, password가 기본필드라 옵션 변경해야함
 passport.use(new LocalStrategy({usernameField: 'api_id', passwordField: 'password'}, function(api_id, password, done) {
@@ -35,7 +36,7 @@ passport.deserializeUser(function(id, done) { //session에 저장된 id를 복�
 
 
 // 3. 실제경로에서 authenticate를 사용
-router.post('/local/login', function(req, res, next) {
+router.post('/local/login', isSecure, function(req, res, next) {
     passport.authenticate('local', function (err, user) {
         if (err) {
             return next(err);

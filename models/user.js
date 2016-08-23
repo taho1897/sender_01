@@ -31,7 +31,6 @@ function findUser(userId, callback) {
             if (err) {
                 return callback(err);
             }
-            console.log(result[0]);
             var user = {};
             user.id = result[0].id;
             user.api_id = result[0].api_id;
