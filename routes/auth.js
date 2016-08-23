@@ -2,28 +2,30 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user');
-var isSecure = require('./common').isSecure;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var FacebookTokenStrategy = require('passport-facebook-token');
+var Customer = require('../models/user');
 
 // 1. use로 strategy 함수 만들기 - name, password가 기본필드라 옵션 변경해야함
-passport.use(new LocalStrategy({usernameField: 'api_id'}, function(apiId, done) {
-    User.findById(apiId, function(err, user) {
+passport.use(new LocalStrategy({usernameField: 'api_id', passwordField: 'password'}, function(api_id, password, done) {
+    Customer.findById(api_id, function(err, user) {
         if (err) {
             return done(err);
         }
         if (!user) {
             return done(null, false);
         }
-        done(null, user)
+        done(null, user);
     });
 }));
 
-passport.serializeUser(function(user, done) {
+// 2. serializeUser 사용
+passport.serializeUser(function(user, done) { //session에 아이디를 저장
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-    User.findUser(id, function(err, user) {
+passport.deserializeUser(function(id, done) { //session에 저장된 id를 복원하는 함수
+    Customer.findUser(id, function(err, user) {
         if (err) {
             return done(err);
         }
@@ -31,7 +33,9 @@ passport.deserializeUser(function(id, done) {
     })
 });
 
-router.post('/local/login', isSecure, function(req, res, next) {
+
+// 3. 실제경로에서 authenticate를 사용
+router.post('/local/login', function(req, res, next) {
     passport.authenticate('local', function (err, user) {
         if (err) {
             return next(err);
@@ -57,6 +61,7 @@ router.post('/local/login', isSecure, function(req, res, next) {
         user: user
     });
 });
+
 router.get('/local/logout', function(req, res, next) {
     req.logout();
     res.send({ message: 'local logout' });
