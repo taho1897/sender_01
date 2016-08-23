@@ -29,7 +29,7 @@ var cert = fs.readFileSync(path.join(__dirname,'../cert/site.crt')).toString();
 var opts = {
   key : key,
   cert : cert
-}
+};
 
 
 
