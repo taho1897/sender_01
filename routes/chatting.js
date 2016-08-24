@@ -18,12 +18,13 @@ router.post('/', isSecure, isAuthenticated, function(req, res, next) {
         data.receiverId = fields.receiver_id;
         data.name = fields.name;
         data.message = fields.message;
-        data.pic = [];
-        data.pic.push(files.pic);
 
-        var filename = path.basename(files.pic.path);
-        data.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
-
+        if (files.pic) {
+            data.pic = [];
+            data.pic.push(files.pic);
+            var filename = path.basename(files.pic.path);
+            data.pic.push({url: url.resolve(ecTo, '/images/' + filename)});
+        }
         res.send({
             result : data
         });
