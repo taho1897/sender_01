@@ -62,7 +62,7 @@ router.post('/local/login', isSecure, function(req, res, next) {
     });
 });
 
-router.get('/local/logout', function(req, res, next) {
+router.get('/local/logout', isAuthenticated, function(req, res, next) {
     req.logout();
     res.send({ message: 'local logout' });
 });
