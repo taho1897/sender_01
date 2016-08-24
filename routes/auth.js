@@ -39,7 +39,6 @@ passport.deserializeUser(function(id, done) { //session에 저장된 id를 복�
     });
 });
 
-
 // 3. 실제경로에서 authenticate를 사용
 router.post('/local/login', isSecure, function(req, res, next) {
     passport.authenticate('local', function (err, user) {
