@@ -7,7 +7,7 @@ var isSecure = require('./common').isSecure;
 var isAuthenticated = require('./common').isAuthenticated;
 var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:3000';
 
-router.post('/', isSecure, isAuthenticated, function(req, res, next) {
+router.post('/', function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;
@@ -23,7 +23,7 @@ router.post('/', isSecure, isAuthenticated, function(req, res, next) {
         temp.esType = fields.esType;
         temp.pic = [];
 
-        if (files.photos instanceof Array) {
+        if (files.pic instanceof Array) {
             temp.pic = files.pic;
         } else if (files.pic) {
             temp.pic.push(files.pic);
