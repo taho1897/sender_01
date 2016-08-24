@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var isSecure = require('./common').isSecure;
 var isAuthenticated = require('./common').isAuthenticated;
-
+var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:3000';
 
 router.post('/', isSecure, isAuthenticated,  function(req, res, next) {
     var result = {};
@@ -27,7 +27,7 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
                 sender_id: sender,
                 addr : '서울 관악구 서울대 연구공원',
                 info : '도자기',
-                pic : 'http://localhost:3000/images/upload_01bd18c7dd4fa45013be85aef81111111.jpg',
+                pic : ecTo+'/images/upload_01bd18c7dd4fa45013be85aef81111111.jpg',
                 arr_time : '2016-08-24 11:24:32',
                 req_phone : '010-1235-5555',
                 price: 12000,
