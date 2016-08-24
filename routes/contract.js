@@ -1,21 +1,35 @@
 var express = require('express');
 var router = express.Router();
+var formidable = require('formidable');
+var path = require('path');
+var url = require('url');
 var isSecure = require('./common').isSecure;
 var isAuthenticated = require('./common').isAuthenticated;
 var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:3000';
 
 router.post('/', isSecure, isAuthenticated,  function(req, res, next) {
-    var result = {};
-    result.user_id = req.body.user_id;
-    result.addr = req.body.addr;
-    result.rec_phone = req.body.rec_phone;
-    result.price = req.body.price;
-    result.info = req.body.info || "";
-    result.pic = req.body.pic || "";
-    result.memo = req.body.memo || "";
-    res.send({
-        message :  '배송 요청이 등록되었습니다.',
-        temp : result
+    var form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.multiples = true;
+    form.uploadDir = path.join(__dirname, '../uploads/images/menus');
+    form.parse(req, function(err, fields, files) {
+        if (err) {return next(err);}
+        var temp = {};
+        temp.user_id = fields.user_id;
+        temp.addr = fields.addr;
+        temp.rec_phone = fields.rec_phone;
+        temp.price = fields.price;
+        temp.info = fields.info;
+        temp.memo = fields.memo;
+        temp.files = [];
+        temp.files.push(files.pic);
+        var filename = path.basename(files.pic.path);
+        temp.files.push({url : url.resolve(ecTo,'/images/'+filename)});
+        res.send({
+            message :  '배송 요청이 등록되었습니다.',
+            temp : temp
+        });
+
     });
 }); // 8. 배송 요청 등록 및 미체결 계약 생성
 
@@ -42,9 +56,9 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
 }); // 9. 배송 요청 보기
 
 router.get('/delivering', isSecure, isAuthenticated, function(req, res, next) {
-    var currentPage = parseInt(req.query.CurrentPage) || 1;
+    var currentPage = parseInt(req.query.currentPage) || 1;
     var itemsPerPage = parseInt(req.query.itemsPerPage) || 10;
-    if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+/i)) {
+    if (req.url.match(/\?currentPage=\d+&itemsPerPage=\d+/i)) {
         res.send({
             totalPage : 10,
             currentPage : currentPage,
