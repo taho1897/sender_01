@@ -54,13 +54,24 @@ router.get('/:user_id', isSecure, isAuthenticated, function(req, res, next) {
 }); // 4. 특정 사용자의 정보 보기
 
 router.put('/me', function(req, res, next) {
-                res.send({
+    var form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.multiples = true;
+    form.uploadDir = path.join(__dirname, '../uploads/images/menus');
+    form.parse(req, function(err, fields, files) {
+        if (err) {return next(err);}
+        var menu = {};
+        menu.files = [];
+            menu.files.push(files.photos);
+            var filename = path.basename(files.photos.path);
+            menu.files.push({url : url.resolve('http://localhost:3000','/images/'+filename)});
+
+            res.send({
                 message: '프로필 사진의 변경을 성공하였습니다.',
-                result : menu
+                temp : menu
             });
+    });
 }); // 5. 자신의 프로필 사진 변경 하기
-
-
 
 router.delete('/', isAuthenticated, function(req, res, next) {
     var userId = req.body.user_id;
