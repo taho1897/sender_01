@@ -5,8 +5,9 @@ var path = require('path');
 var async = require('async');
 var url = require('url');
 var isSecure = require('./common').isSecure;
+var isAuthenticated = require('./common').isAuthenticated;
 
-router.put('/', isSecure, function(req, res, next) {
+router.put('/', isSecure, isAuthenticated, function(req, res, next) {
     var phone = req.body.phone;
     if (phone !== undefined) {
         res.send({
@@ -19,7 +20,7 @@ router.put('/', isSecure, function(req, res, next) {
     }
 }); // 2. 핸드폰 번호 등록
 
-router.get('/me', isSecure, function(req, res, next) {
+router.get('/me', isSecure, isAuthenticated, function(req, res, next) {
     res.send({
         result: {
             user_id : 1,
@@ -35,12 +36,12 @@ router.get('/me', isSecure, function(req, res, next) {
     });
 }); // 3. 자신의 정보 보기
 
-router.get('/logout', function(req, res, next) {
+router.get('/logout', isAuthenticated, function(req, res, next) {
     req.logout();
     res.send({ message : '로그아웃했습니다.' });
 }); // 6. 로그아웃
 
-router.get('/:user_id', isSecure, function(req, res, next) {
+router.get('/:user_id', isSecure, isAuthenticated, function(req, res, next) {
     var userId = req.params.user_id;
     res.send({
         result : {
@@ -90,7 +91,7 @@ router.put('/me', function(req, res, next) {
             });
         }*/
 
-router.delete('/', function(req, res, next) {
+router.delete('/', isAuthenticated, function(req, res, next) {
     var userId = req.body.user_id;
     res.send({ message: userId +' : 회원 탈퇴가 처리되었습니다.' });
 }); // 7. 회원 탈퇴 하기
