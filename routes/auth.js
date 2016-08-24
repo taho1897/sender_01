@@ -55,8 +55,7 @@ router.post('/local/login', isSecure, function(req, res, next) {
     })(req, res, next);
 }, function(req, res, next) {
     var user = {};
-    user.name = req.user.name;
-    user.email = req.user.email;
+    user.name = req.user.api_id;
     res.send({
         message: 'local login',
         user: user
