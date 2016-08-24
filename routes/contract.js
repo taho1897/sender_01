@@ -42,8 +42,8 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
 }); // 9. 배송 요청 보기
 
 router.get('/delivering', isSecure, isAuthenticated, function(req, res, next) {
-    var currentPage = req.query.CurrentPage || 1;
-    var itemsPerPage = req.query.itemsPerPage || 10;
+    var currentPage = parseInt(req.query.CurrentPage) || 1;
+    var itemsPerPage = parseInt(req.query.itemsPerPage) || 10;
     if (req.url.match(/\/?currentPage=\d+&itemsPerPage=\d+/i)) {
         res.send({
             totalPage : 10,
