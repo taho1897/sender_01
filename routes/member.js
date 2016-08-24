@@ -30,7 +30,7 @@ router.get('/me', isSecure, isAuthenticated, function(req, res, next) {
             introduction : '저는 안산에 살고 있습니다.', // 자기소개 내용
             deliver_com : 1, //배달 완료 횟수
             deliver_req : 5, // 배달 요청 횟수
-            pic : 'http://localhost:3000/images/upload_20c413748c8b88ae38a10c03370cc850.jpg',
+            pic : 'http://http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80/images/upload_20c413748c8b88ae38a10c03370cc850.jpg',
             activation : 1 // 활성화 유무
         }
     });
@@ -47,7 +47,7 @@ router.get('/:user_id', isSecure, isAuthenticated, function(req, res, next) {
             introduction: '나는 홍길동의 동생입니다.',
             deliver_com: 3,
             deliver_req: 1,
-            pic: 'http://localhost:3000/images/upload_01bd18c7dd4fa45013be85aef8ed10a5.jpg',
+            pic: 'http://http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80/images/upload_01bd18c7dd4fa45013be85aef8ed10a5.jpg',
             activation: 1
         }
     });
@@ -64,7 +64,7 @@ router.put('/me', function(req, res, next) {
         menu.files = [];
             menu.files.push(files.photos);
             var filename = path.basename(files.photos.path);
-            menu.files.push({url : url.resolve('http://localhost:3000','/images/'+filename)});
+            menu.files.push({url : url.resolve('http://http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80','/images/'+filename)});
 
             res.send({
                 message: '프로필 사진의 변경을 성공하였습니다.',
