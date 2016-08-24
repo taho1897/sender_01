@@ -22,16 +22,21 @@ passport.use(new LocalStrategy({usernameField: 'api_id', passwordField: 'passwor
 
 // 2. serializeUser 사용
 passport.serializeUser(function(user, done) { //session에 아이디를 저장
+    console.log('serialize');
+    console.log(user.id);
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) { //session에 저장된 id를 복원하는 함수
+    console.log('deserialize start');
     Customer.findUser(id, function(err, user) {
         if (err) {
+            econsole.log('deserialize err');
             return done(err);
         }
+        console.log('deserialize comp');
         done(null, user);
-    })
+    });
 });
 
 
@@ -55,8 +60,8 @@ router.post('/local/login', isSecure, function(req, res, next) {
     })(req, res, next);
 }, function(req, res, next) {
     var user = {};
-    user.name = req.user.name;
-    user.email = req.user.email;
+    user.id = req.user.id;
+    user.api_id = req.user.api_id;
     res.send({
         message: 'local login',
         user: user
