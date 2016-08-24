@@ -11,6 +11,12 @@ var redisClient = redis.createClient();
 var RedisStore = require('connect-redis')(session);
 
 var auth = require('./routes/auth');
+var board = require('./routes/board');
+var chatting = require('./routes/chatting');
+var contract = require('./routes/contract');
+var member = require('./routes/member');
+var notice = require('./routes/notice');
+var review = require('./routes/review');
 
 var app = express();
 app.set('env', 'development');
@@ -48,8 +54,13 @@ app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 
 
 app.use('/auth', auth);
-// app.use('/notifications',notification);
-// app.use('/branches', branch);
+app.use('/boards', board);
+app.use('/chattings', chatting);
+app.use('/contracts', contract);
+app.use('/members', member);
+app.use('/notices', notice);
+app.use('/reviews', review);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
