@@ -44,7 +44,7 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
 router.get('/delivering', isSecure, isAuthenticated, function(req, res, next) {
     var currentPage = parseInt(req.query.CurrentPage) || 1;
     var itemsPerPage = parseInt(req.query.itemsPerPage) || 10;
-    if (req.url.match(/\/?currentPage=\d+&itemsPerPage=\d+/i)) {
+    if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+/i)) {
         res.send({
             totalPage : 10,
             currentPage : currentPage,
