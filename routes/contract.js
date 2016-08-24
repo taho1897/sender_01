@@ -149,6 +149,7 @@ router.put('/:contract_id', function(req, res, next) {
     var contract_id = req.params.contract_id;
     var state = req.body.state;
     res.send({
+        message : '계약 상태가 변경되었습니다.',
         temp : {
         contract_id : contract_id,
         state : state
