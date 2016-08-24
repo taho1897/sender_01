@@ -19,8 +19,6 @@ router.post('/', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
     var sender = req.query.sender;
-    var currentPage = req.query.CurrentPage || 1;
-    var itemsPerPage = req.query.itemsPerPage || 10;
     if(req.url.match(/\/\?sender=\d+/i)) {
         res.send({
             result: {
@@ -34,7 +32,17 @@ router.get('/', function(req, res, next) {
                 memo: '깨지기 쉬워요!!'
             }
         });
-    } else if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+/i)) {
+    } else {
+        res.send({
+            error : '배송 요청 보기에 실패했습니다'
+        });
+    }
+}); // 9. 배송 요청 보기
+
+router.get('/delivering', function(req, res, next) {
+    var currentPage = req.query.CurrentPage || 1;
+    var itemsPerPage = req.query.itemsPerPage || 10;
+    if (req.url.match(/\/?currentPage=\d+&itemsPerPage=\d+/i)) {
         res.send({
             totalPage : 10,
             currentPage : currentPage,
@@ -85,13 +93,12 @@ router.get('/', function(req, res, next) {
         });
     } else {
         res.send({
-            error : '에러'
+            error : '배달 가기의 목록을 불러올 수 없습니다.'
         });
     }
+}); // 10. 배달 가기 목록 보기
 
-}); // 9. 배송 요청 보기 & 10. 배달 가기 목록 보기
-
-router.get('/:deliverer_id', function(req, res, next) {
+router.get('/delivering/:deliverer_id', function(req, res, next) {
     var id = req.params.deliverer_id;
     res.send({
        result : {
@@ -106,7 +113,7 @@ router.get('/:deliverer_id', function(req, res, next) {
     });
 }); // 11. ‘배달가기’ 상세 목록 보기
 
-router.post('/deliverering', function(req, res, next) {
+router.post('/delivering', function(req, res, next) {
     var temp = {};
     temp.userId = req.body.user_id;
     temp.here = req.body.here;
