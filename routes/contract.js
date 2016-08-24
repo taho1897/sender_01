@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
     var sender = req.query.sender;
     var currentPage = req.query.CurrentPage || 1;
     var itemsPerPage = req.query.itemsPerPage || 10;
-    if(sender !== undefined) {
+    if(req.url.match(/\/\?sender=\d+/i)) {
         res.send({
             result: {
                 sender_id: sender,
@@ -34,11 +34,11 @@ router.get('/', function(req, res, next) {
                 memo: '깨지기 쉬워요!!'
             }
         });
-    } else if (sender === undefined) {
+    } else if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+/i)) {
         res.send({
             totalPage : 10,
             currentPage : currentPage,
-            itemPerPage : itemsPerPage,
+            itemsPerPage : itemsPerPage,
             result : {
                 deliverer : [{
                     deliverer_id : 1,
@@ -83,7 +83,12 @@ router.get('/', function(req, res, next) {
                 }]
             }
         });
+    } else {
+        res.send({
+            error : '에러'
+        });
     }
+
 }); // 9. 배송 요청 보기 & 10. 배달 가기 목록 보기
 
 router.get('/:deliverer_id', function(req, res, next) {
@@ -95,35 +100,60 @@ router.get('/:deliverer_id', function(req, res, next) {
                here : '서울 서초구 강남대로 399 한국몬테소리 빌딩',
                next : '서울 관악구 서울대 연구공원 웨딩홀 식당',
                dep_time : '2016-08-24 18:01:00',
-               arr_time : '2016-08-24 17:30:00'
+               arr_time : '2016-08-24 19:30:00'
            }
        }
     });
 }); // 11. ‘배달가기’ 상세 목록 보기
 
 router.post('/deliverering', function(req, res, next) {
-    var userId = req.body.user_id;
-    var here = req.body.user_id;
-    var next = req.body.next;
-    var dep_time = req.body.dep_time;
-    var arr_time = req.body.arr_time;
-
+    var temp = {};
+    temp.userId = req.body.user_id;
+    temp.here = req.body.here;
+    temp.next = req.body.next;
+    temp.dep_time = req.body.dep_time;
+    temp.arr_time = req.body.arr_time;
     res.send({
-        message : '배달 가기 정보를 등록했습니다.'
+        message : '배달 가기 정보를 등록했습니다.',
+        temp : temp
     });
 
 }); // 12. ‘배달 가기’ 등록
 
 router.put('/', function(req, res, next) {
-
+    var temp = {};
+    temp.sender_id = req.body.sender_id;
+    temp.deliverer_id = req.body.deliverer_id;
+    temp.state = req.body.state;
+    res.send({
+        message : '계약이 체결 되었습니다.',
+        temp : temp
+    });
 }); // 13. 계약 체결하기
 
 router.get('/:contract_id', function(req, res, next) {
-
+    var contract_id = req.params.contract_id;
+    res.send({
+        result : {
+            contract_id : contract_id,
+            sender_id : 1,
+            deliverer_id : 1,
+            req_time : '2016-08-24 18:01:00',
+            res_time : '2016-08-24 19:30:00',
+            state : 2
+        }
+    });
 }); // 14. 계약 내역 보기
 
 router.put('/:contract_id', function(req, res, next) {
-
+    var contract_id = req.params.contract_id;
+    var state = req.body.state;
+    res.send({
+        temp : {
+        contract_id : contract_id,
+        state : state
+        }
+    });
 }); // 15. 배송 상태 변경하기
 
 module.exports = router;
