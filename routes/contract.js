@@ -21,10 +21,10 @@ router.post('/', isSecure, isAuthenticated,  function(req, res, next) {
         temp.price = fields.price;
         temp.info = fields.info;
         temp.memo = fields.memo;
-        temp.files = [];
-        temp.files.push(files.pic);
+        temp.pic = [];
+        temp.pic.push(files.pic);
         var filename = path.basename(files.pic.path);
-        temp.files.push({url : url.resolve(ecTo,'/images/'+filename)});
+        temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
         res.send({
             message :  '배송 요청이 등록되었습니다.',
             temp : temp
