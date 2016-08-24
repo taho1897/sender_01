@@ -6,6 +6,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var FacebookTokenStrategy = require('passport-facebook-token');
 var Customer = require('../models/user');
 var isSecure = require('./common').isSecure;
+var isAuthenticated = require('./common').isAuthenticated;
 
 // 1. use로 strategy 함수 만들기 - name, password가 기본필드라 옵션 변경해야함
 passport.use(new LocalStrategy({usernameField: 'api_id', passwordField: 'password'}, function(api_id, password, done) {
