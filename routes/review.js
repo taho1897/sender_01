@@ -3,11 +3,10 @@ var router = express.Router();
 var isAuthenticated = require('./common').isAuthenticated;
 
 router.get('/', isAuthenticated, function(req, res, next) {
-    console.log(req.user);
     if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+&deliverer_id=\d+/i)) { // 주문 목록 조회 req.url: /?pageNo=1&rowCount=10
 
-        var currentPage = parseInt(req.query.currentPage, 10);
-        var itemsPerPage = parseInt(req.query.itemsPerPage, 10);
+        var currentPage = parseInt(req.query.currentPage, 10) || 1;
+        var itemsPerPage = parseInt(req.query.itemsPerPage, 10) || 10;
         var delivererId = parseInt(req.query.deliverer_id, 10);
 
         res.send({
@@ -35,6 +34,10 @@ router.get('/', isAuthenticated, function(req, res, next) {
                     date : "2016-08-11 17:05:25"
                 }]
             }
+        });
+    } else {
+        res.send({
+           message : '리뷰 목록 불러오기를 실패했습니다.'
         });
     }
 });
