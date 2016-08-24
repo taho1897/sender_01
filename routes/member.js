@@ -36,11 +36,6 @@ router.get('/me', isSecure, isAuthenticated, function(req, res, next) {
     });
 }); // 3. 자신의 정보 보기
 
-router.get('/logout', isAuthenticated, function(req, res, next) {
-    req.logout();
-    res.send({ message : '로그아웃했습니다.' });
-}); // 6. 로그아웃
-
 router.get('/:user_id', isSecure, isAuthenticated, function(req, res, next) {
     var userId = req.params.user_id;
     res.send({
