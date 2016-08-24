@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var isSecure = require('./common').isSecure;
 
-router.post('/', function(req, res, next) {
+router.post('/', isSecure, function(req, res, next) {
     var result = {};
     result.user_id = req.body.user_id;
     result.addr = req.body.addr;
@@ -16,7 +17,7 @@ router.post('/', function(req, res, next) {
     });
 }); // 8. 배송 요청 등록 및 미체결 계약 생성
 
-router.get('/', function(req, res, next) {
+router.get('/', isSecure, function(req, res, next) {
     var sender = req.query.sender;
     if(req.url.match(/\/\?sender=\d+/i)) {
         res.send({
@@ -38,7 +39,7 @@ router.get('/', function(req, res, next) {
     }
 }); // 9. 배송 요청 보기
 
-router.get('/delivering', function(req, res, next) {
+router.get('/delivering', isSecure, function(req, res, next) {
     var currentPage = req.query.CurrentPage || 1;
     var itemsPerPage = req.query.itemsPerPage || 10;
     if (req.url.match(/\/?currentPage=\d+&itemsPerPage=\d+/i)) {
@@ -97,7 +98,7 @@ router.get('/delivering', function(req, res, next) {
     }
 }); // 10. 배달 가기 목록 보기
 
-router.get('/delivering/:deliverer_id', function(req, res, next) {
+router.get('/delivering/:deliverer_id', isSecure, function(req, res, next) {
     var id = req.params.deliverer_id;
     res.send({
         result : {
@@ -112,7 +113,7 @@ router.get('/delivering/:deliverer_id', function(req, res, next) {
     });
 }); // 11. ‘배달가기’ 상세 목록 보기
 
-router.post('/delivering', function(req, res, next) {
+router.post('/delivering', isSecure, function(req, res, next) {
     var temp = {};
     temp.userId = req.body.user_id;
     temp.here = req.body.here;
@@ -137,7 +138,7 @@ router.put('/', function(req, res, next) {
     });
 }); // 13. 계약 체결하기
 
-router.get('/:contract_id', function(req, res, next) {
+router.get('/:contract_id', isSecure, function(req, res, next) {
     var contract_id = req.params.contract_id;
     res.send({
         result : {
