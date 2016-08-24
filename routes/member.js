@@ -4,8 +4,9 @@ var formidable = require('formidable');
 var path = require('path');
 var async = require('async');
 var url = require('url');
+var isSecure = require('./common').isSecure;
 
-router.put('/', function(req, res, next) {
+router.put('/', isSecure, function(req, res, next) {
     var phone = req.body.phone;
     if (phone !== undefined) {
         res.send({
@@ -18,7 +19,7 @@ router.put('/', function(req, res, next) {
     }
 }); // 2. 핸드폰 번호 등록
 
-router.get('/me', function(req, res, next) {
+router.get('/me', isSecure, function(req, res, next) {
     res.send({
         result: {
             user_id : 1,
@@ -39,7 +40,7 @@ router.get('/logout', function(req, res, next) {
     res.send({ message : '로그아웃했습니다.' });
 }); // 6. 로그아웃
 
-router.get('/:user_id', function(req, res, next) {
+router.get('/:user_id', isSecure, function(req, res, next) {
     var userId = req.params.user_id;
     res.send({
         result : {
