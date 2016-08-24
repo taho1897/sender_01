@@ -4,16 +4,15 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
     var result = {};
     result.user_id = req.body.user_id;
-   result.addr = req.body.addr;
+    result.addr = req.body.addr;
     result.rec_phone = req.body.rec_phone;
     result.price = req.body.price;
     result.info = req.body.info || "";
     result.pic = req.body.pic || "";
     result.memo = req.body.memo || "";
-
     res.send({
-       message :  '배송 요청이 등록되었습니다.',
-       temp : result
+        message :  '배송 요청이 등록되었습니다.',
+        temp : result
     });
 }); // 8. 배송 요청 등록 및 미체결 계약 생성
 
@@ -101,15 +100,15 @@ router.get('/delivering', function(req, res, next) {
 router.get('/delivering/:deliverer_id', function(req, res, next) {
     var id = req.params.deliverer_id;
     res.send({
-       result : {
-           deliverer : {
-               user_id : 1,
-               here : '서울 서초구 강남대로 399 한국몬테소리 빌딩',
-               next : '서울 관악구 서울대 연구공원 웨딩홀 식당',
-               dep_time : '2016-08-24 18:01:00',
-               arr_time : '2016-08-24 19:30:00'
-           }
-       }
+        result : {
+            deliverer : {
+                user_id : 1,
+                here : '서울 서초구 강남대로 399 한국몬테소리 빌딩',
+                next : '서울 관악구 서울대 연구공원 웨딩홀 식당',
+                dep_time : '2016-08-24 18:01:00',
+                arr_time : '2016-08-24 19:30:00'
+            }
+        }
     });
 }); // 11. ‘배달가기’ 상세 목록 보기
 
@@ -158,8 +157,8 @@ router.put('/:contract_id', function(req, res, next) {
     res.send({
         message : '계약 상태가 변경되었습니다.',
         temp : {
-        contract_id : contract_id,
-        state : state
+            contract_id : contract_id,
+            state : state
         }
     });
 }); // 15. 배송 상태 변경하기
