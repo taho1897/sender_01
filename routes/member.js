@@ -76,3 +76,5 @@ router.get('/logout', function(req, res, next) {
 router.delete('/', function(req, res, next) {
 
 }); // 7. 회원 탈퇴 하기
+
+module.exports = router;

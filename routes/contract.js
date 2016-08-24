@@ -32,3 +32,5 @@ router.get('/:contract_id', function(req, res, next) {
 router.put('/:contract_id', function(req, res, next) {
 
 }); // 15. 배송 상태 변경하기
+
+module.exports = router;
