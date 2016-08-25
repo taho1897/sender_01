@@ -39,7 +39,8 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
         res.send({
             result: {
                 sender_id: sender,
-                addr : '서울 관악구 서울대 연구공원',
+                addr_lat : '37.476807',
+                addr_lon : '3126.963584',
                 info : '도자기',
                 pic : ecTo+'/images/upload_01bd18c7dd4fa45013be85aef81111111.jpg',
                 arr_time : '2016-08-24 11:24:32',
@@ -67,43 +68,59 @@ router.get('/delivering', isSecure, isAuthenticated, function(req, res, next) {
                 deliverer : [{
                     deliverer_id : 1,
                     user_id : 1,
-                    here : '서울 서초구 강남대로 399 한국몬테소리 빌딩',
-                    next : '서울 관악구 서울대 연구공원 웨딩홀 식당'
+                    here_lat : '37.476807',
+                    here_lon : '126.963584',
+                    next_lat : '47.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 2,
                     user_id : 21,
-                    here : '서울 서초구 서초대로 314 서브웨이',
-                    next : '서울 관악구 남현1길 51 연안본가'
+                    here_lat : '38.476807',
+                    here_lon : '126.963584',
+                    next_lat : '48.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 3,
                     user_id : 12,
-                    here : '서울 서초구 강남대로61길 13 버터핑거팬케이크',
-                    next : '서울 관악구 과천대로 947 사당타워 나동 1층 봉추찜닭'
+                    here_lat : '39.476807',
+                    here_lon : '126.963584',
+                    next_lat : '49.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 4,
                     user_id :9,
-                    here : '서울 관악구 남현1길 58 설악흑돼지마을',
-                    next : '서울 관악구 서울대 연구공원 웨딩홀 식당'
+                    here_lat : '36.476807',
+                    here_lon : '126.963584',
+                    next_lat : '46.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 5,
                     user_id : 5,
-                    here : '서울 관악구 남현3길 78 만경양육관',
-                    next : '서울 관악구 과천대로 947 사당타워 나동 1층 크리스피크림도넛'
+                    here_lat : '35.476807',
+                    here_lon : '126.963584',
+                    next_lat : '45.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 6,
                     user_id : 41,
-                    here : '서울 서초구 강남대로61길 13 버터핑거팬케이크',
-                    next : '서울 관악구 서울대 연구공원 웨딩홀 식당'
+                    here_lat : '34.476807',
+                    here_lon : '126.963584',
+                    next_lat : '44.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 7,
                     user_id : 88,
-                    here : '서울 관악구 과천대로 939 르메이에르강남타운 3층 빕스',
-                    next : '서울 관악구 과천대로 947 사당타워 나동 1층 크리스피크림도넛'
+                    here_lat : '33.476807',
+                    here_lon : '126.963584',
+                    next_lat : '43.476807',
+                    next_lon : '136.963584'
                 },{
                     deliverer_id : 8,
                     user_id : 23,
-                    here : '서울 관악구 과천대로 939 르메이에르강남타운 1층 피자헛',
-                    next : '서울 관악구 서울대 연구공원 웨딩홀 식당'
+                    here_lat : '32.476807',
+                    here_lon : '126.963584',
+                    next_lat : '42.476807',
+                    next_lon : '136.963584'
                 }]
             }
         });
@@ -120,8 +137,10 @@ router.get('/delivering/:deliverer_id', isSecure, isAuthenticated, function(req,
         result : {
             deliverer : {
                 user_id : 1,
-                here : '서울 서초구 강남대로 399 한국몬테소리 빌딩',
-                next : '서울 관악구 서울대 연구공원 웨딩홀 식당',
+                here_lat : '37.476807',
+                here_lon : '126.963584',
+                next_lat : '47.476807',
+                next_lon : '136.963584',
                 dep_time : '2016-08-24 18:01:00',
                 arr_time : '2016-08-24 19:30:00'
             }
