@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var isAuthenticated = require('./common').isAuthenticated;
+// var isAuthenticated = require('./common').isAuthenticated;
 
-router.get('/', isAuthenticated, function(req, res, next) {
+router.get('/', function(req, res, next) {
     if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+&deliverer_id=\d+/i)) { // 주문 목록 조회 req.url: /?pageNo=1&rowCount=10
 
         var currentPage = parseInt(req.query.currentPage, 10) || 1;

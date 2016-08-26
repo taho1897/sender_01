@@ -5,10 +5,10 @@ var path = require('path');
 var async = require('async');
 var url = require('url');
 var isSecure = require('./common').isSecure;
-var isAuthenticated = require('./common').isAuthenticated;
+// var isAuthenticated = require('./common').isAuthenticated;
 var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80';
 
-router.put('/', isSecure, isAuthenticated, function(req, res, next) {
+router.put('/', isSecure,  function(req, res, next) {
     var phone = req.body.phone;
     if (phone !== undefined) {
         res.send({
@@ -21,7 +21,7 @@ router.put('/', isSecure, isAuthenticated, function(req, res, next) {
     }
 }); // 2. 핸드폰 번호 등록
 
-router.get('/me', isSecure, isAuthenticated, function(req, res, next) {
+router.get('/me', isSecure, function(req, res, next) {
     res.send({
         result: {
             user_id : 1,
@@ -37,7 +37,7 @@ router.get('/me', isSecure, isAuthenticated, function(req, res, next) {
     });
 }); // 3. 자신의 정보 보기
 
-router.get('/:user_id', isSecure, isAuthenticated, function(req, res, next) {
+router.get('/:user_id', isSecure, function(req, res, next) {
     var userId = req.params.user_id;
     res.send({
         result : {
@@ -54,7 +54,7 @@ router.get('/:user_id', isSecure, isAuthenticated, function(req, res, next) {
     });
 }); // 4. 특정 사용자의 정보 보기
 
-router.put('/me', isAuthenticated, function(req, res, next) {
+router.put('/me', function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;
@@ -74,7 +74,7 @@ router.put('/me', isAuthenticated, function(req, res, next) {
     });
 }); // 5. 자신의 프로필 사진 변경 하기
 
-router.delete('/', isAuthenticated, function(req, res, next) {
+router.delete('/', function(req, res, next) {
     var userId = req.body.user_id;
     res.send({ message: userId +' : 회원 탈퇴가 처리되었습니다.' });
 }); // 7. 회원 탈퇴 하기

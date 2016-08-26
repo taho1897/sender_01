@@ -4,10 +4,10 @@ var formidable = require('formidable');
 var path = require('path');
 var url = require('url');
 var isSecure = require('./common').isSecure;
-var isAuthenticated = require('./common').isAuthenticated;
+// var isAuthenticated = require('./common').isAuthenticated;
 var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80';
 
-router.post('/', isSecure, isAuthenticated, function(req, res, next) {
+router.post('/', isSecure, function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;

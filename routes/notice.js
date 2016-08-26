@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var isAuthenticated = require('./common').isAuthenticated;
+// var isAuthenticated = require('./common').isAuthenticated;
 
-router.get('/', isAuthenticated, function(req, res, next) {
+router.get('/', function(req, res, next) {
     var currentPage = parseInt(req.query.currentPage);
     var itemsPerPage = parseInt(req.query.itemsPerPage);
     var type = parseInt(req.query.type);

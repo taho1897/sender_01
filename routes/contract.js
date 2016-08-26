@@ -7,7 +7,7 @@ var isSecure = require('./common').isSecure;
 var isAuthenticated = require('./common').isAuthenticated;
 var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80';
 
-router.post('/', isSecure, isAuthenticated,  function(req, res, next) {
+router.post('/', isSecure, function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;
@@ -33,7 +33,7 @@ router.post('/', isSecure, isAuthenticated,  function(req, res, next) {
     });
 }); // 8. 배송 요청 등록 및 미체결 계약 생성
 
-router.get('/', isSecure, isAuthenticated, function(req, res, next) {
+router.get('/', isSecure, function(req, res, next) {
     var sender = req.query.sender;
     if(req.url.match(/\/\?sender=\d+/i)) {
         res.send({
@@ -65,7 +65,7 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
     }
 }); // 9. 배송 요청 보기
 
-router.get('/delivering', isSecure, isAuthenticated, function(req, res, next) {
+router.get('/delivering', isSecure, function(req, res, next) {
     var currentPage = parseInt(req.query.currentPage) || 1;
     var itemsPerPage = parseInt(req.query.itemsPerPage) || 10;
     if (req.url.match(/\?currentPage=\d+&itemsPerPage=\d+/i)) {
@@ -140,7 +140,7 @@ router.get('/delivering', isSecure, isAuthenticated, function(req, res, next) {
     }
 }); // 10. 배달 가기 목록 보기
 
-router.get('/delivering/:deliverer_id', isSecure, isAuthenticated, function(req, res, next) {
+router.get('/delivering/:deliverer_id', isSecure, function(req, res, next) {
     var id = req.params.deliverer_id;
     res.send({
         result : {
@@ -157,7 +157,7 @@ router.get('/delivering/:deliverer_id', isSecure, isAuthenticated, function(req,
     });
 }); // 11. ‘배달가기’ 상세 목록 보기
 
-router.post('/delivering', isSecure, isAuthenticated, function(req, res, next) {
+router.post('/delivering', isSecure, function(req, res, next) {
     var temp = {};
     temp.userId = req.body.user_id;
     temp.here = req.body.here;
@@ -171,7 +171,7 @@ router.post('/delivering', isSecure, isAuthenticated, function(req, res, next) {
 
 }); // 12. ‘배달 가기’ 등록
 
-router.put('/', isAuthenticated, function(req, res, next) {
+router.put('/', function(req, res, next) {
     var temp = {};
     temp.sender_id = req.body.sender_id;
     temp.deliverer_id = req.body.deliverer_id;
@@ -182,7 +182,7 @@ router.put('/', isAuthenticated, function(req, res, next) {
     });
 }); // 13. 계약 체결하기
 
-router.get('/:contract_id', isSecure, isAuthenticated, function(req, res, next) {
+router.get('/:contract_id', isSecure, function(req, res, next) {
     var contract_id = req.params.contract_id;
     res.send({
         result : {
@@ -196,7 +196,7 @@ router.get('/:contract_id', isSecure, isAuthenticated, function(req, res, next) 
     });
 }); // 14. 계약 내역 보기
 
-router.put('/:contract_id', isAuthenticated, function(req, res, next) {
+router.put('/:contract_id', function(req, res, next) {
     var contract_id = req.params.contract_id;
     var state = req.body.state;
     res.send({
