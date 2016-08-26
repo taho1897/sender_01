@@ -38,16 +38,25 @@ router.get('/', isSecure, isAuthenticated, function(req, res, next) {
     if(req.url.match(/\/\?sender=\d+/i)) {
         res.send({
             result: {
-                sender_id: sender,
-                addr_lat : '37.476807',
-                addr_lon : '3126.963584',
-                info : '도자기',
-                pic : ecTo+'/images/upload_01bd18c7dd4fa45013be85aef81111111.jpg',
-                arr_time : '2016-08-24 11:24:32',
-                req_phone : '010-1235-5555',
-                price: 12000,
-                memo: '깨지기 쉬워요!!'
-            }
+                sender_id: '1',
+                    addr_lat : '37.466286',
+                    addr_lon : '126.960546',
+                    info : "도자기",
+                    arr_time: "2016-08-01T10:30:00.000Z",
+                    rec_phone: "010-6351-5707",
+                    price: 5000,
+                    memo: "깨지기 쉬워요",
+                    pic: [
+                    {
+                        "originalFilename": "1.jpg",
+                        "fileUrl": "http://localhost:8080/sending_images/1.jpg"
+                    }
+                ]
+        }
+
+
+
+
         });
     } else {
         res.send({
