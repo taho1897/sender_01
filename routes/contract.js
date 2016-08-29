@@ -26,7 +26,7 @@ router.post('/', isSecure, function(req, res, next) {
         var filename = path.basename(files.pic.path);
         temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
         res.send({
-            message :  '배송 요청이 등록되었습니다.',
+            result :  '배송 요청이 등록되었습니다.',
             temp : temp
         });
 
@@ -70,67 +70,69 @@ router.get('/delivering', isSecure, function(req, res, next) {
     var itemsPerPage = parseInt(req.query.itemsPerPage) || 10;
     if (req.url.match(/\?currentPage=\d+&itemsPerPage=\d+/i)) {
         res.send({
-            totalPage : 10,
-            currentPage : currentPage,
-            itemsPerPage : itemsPerPage,
-            result : {
-                deliverer : [{
-                    deliverer_id : 1,
-                    user_id : 1,
-                    here_lat : '37.476807',
-                    here_lon : '126.963584',
-                    next_lat : '47.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 2,
-                    user_id : 21,
-                    here_lat : '38.476807',
-                    here_lon : '126.963584',
-                    next_lat : '48.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 3,
-                    user_id : 12,
-                    here_lat : '39.476807',
-                    here_lon : '126.963584',
-                    next_lat : '49.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 4,
-                    user_id :9,
-                    here_lat : '36.476807',
-                    here_lon : '126.963584',
-                    next_lat : '46.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 5,
-                    user_id : 5,
-                    here_lat : '35.476807',
-                    here_lon : '126.963584',
-                    next_lat : '45.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 6,
-                    user_id : 41,
-                    here_lat : '34.476807',
-                    here_lon : '126.963584',
-                    next_lat : '44.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 7,
-                    user_id : 88,
-                    here_lat : '33.476807',
-                    here_lon : '126.963584',
-                    next_lat : '43.476807',
-                    next_lon : '136.963584'
-                },{
-                    deliverer_id : 8,
-                    user_id : 23,
-                    here_lat : '32.476807',
-                    here_lon : '126.963584',
-                    next_lat : '42.476807',
-                    next_lon : '136.963584'
-                }]
+            result: {
+                totalPage: 10,
+                currentPage: currentPage,
+                itemsPerPage: itemsPerPage,
+                data: {
+                    deliverer: [{
+                        deliverer_id: 1,
+                        user_id: 1,
+                        here_lat: '37.476807',
+                        here_lon: '126.963584',
+                        next_lat: '47.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 2,
+                        user_id: 21,
+                        here_lat: '38.476807',
+                        here_lon: '126.963584',
+                        next_lat: '48.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 3,
+                        user_id: 12,
+                        here_lat: '39.476807',
+                        here_lon: '126.963584',
+                        next_lat: '49.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 4,
+                        user_id: 9,
+                        here_lat: '36.476807',
+                        here_lon: '126.963584',
+                        next_lat: '46.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 5,
+                        user_id: 5,
+                        here_lat: '35.476807',
+                        here_lon: '126.963584',
+                        next_lat: '45.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 6,
+                        user_id: 41,
+                        here_lat: '34.476807',
+                        here_lon: '126.963584',
+                        next_lat: '44.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 7,
+                        user_id: 88,
+                        here_lat: '33.476807',
+                        here_lon: '126.963584',
+                        next_lat: '43.476807',
+                        next_lon: '136.963584'
+                    }, {
+                        deliverer_id: 8,
+                        user_id: 23,
+                        here_lat: '32.476807',
+                        here_lon: '126.963584',
+                        next_lat: '42.476807',
+                        next_lon: '136.963584'
+                    }]
+                }
             }
         });
     } else {
@@ -165,7 +167,7 @@ router.post('/delivering', isSecure, function(req, res, next) {
     temp.dep_time = req.body.dep_time;
     temp.arr_time = req.body.arr_time;
     res.send({
-        message : '배달 가기 정보를 등록했습니다.',
+        result : '배달 가기 정보를 등록했습니다.',
         temp : temp
     });
 
@@ -177,7 +179,7 @@ router.put('/', function(req, res, next) {
     temp.deliverer_id = req.body.deliverer_id;
     temp.state = req.body.state;
     res.send({
-        message : '계약이 체결 되었습니다.',
+        result : '계약이 체결 되었습니다.',
         temp : temp
     });
 }); // 13. 계약 체결하기
@@ -200,7 +202,7 @@ router.put('/:contract_id', function(req, res, next) {
     var contract_id = req.params.contract_id;
     var state = req.body.state;
     res.send({
-        message : '계약 상태가 변경되었습니다.',
+        result : '계약 상태가 변경되었습니다.',
         temp : {
             contract_id : contract_id,
             state : state

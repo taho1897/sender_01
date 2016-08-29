@@ -3,7 +3,7 @@
 function isAuthenticated(req, res, next) {
     if (!req.user) {
         return res.status(401).send({
-            message: 'Login Required'
+            error: 'Login Required'
         });
     }
     next();
@@ -12,7 +12,7 @@ function isAuthenticated(req, res, next) {
 function isSecure (req, res, next) {// HTTPS 사용 위해 추가
     if(!req.secure) {
         return res.status(426).send({
-            message: 'Upgrade Needed'
+            error: 'Upgrade Needed'
         });
     }
     next();

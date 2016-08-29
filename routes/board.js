@@ -33,12 +33,12 @@ router.post('/', isSecure, function(req, res, next) {
         temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
         if (boardType === 0) { // 칭찬
             res.send({
-                message : '칭찬이 성공적으로 등록되었습니다.',
+                result : '칭찬이 성공적으로 등록되었습니다.',
                 temp : temp
             });
         } else if (boardType === 1) { // 신고
             res.send({
-                message : '신고가 성공적으로 등록되었습니다.',
+                result : '신고가 성공적으로 등록되었습니다.',
                 temp : temp
             });
         } else {

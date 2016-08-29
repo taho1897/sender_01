@@ -12,11 +12,11 @@ router.put('/', isSecure,  function(req, res, next) {
     var phone = req.body.phone;
     if (phone !== undefined) {
         res.send({
-            message: phone + ': dummy 사용자 등록을 성공했습니다.'
+            result: phone + ': dummy 사용자 등록을 성공했습니다.'
         });
     } else {
         res.send({
-            message: 'dummy 사용자 등록을 실패했습니다.'
+            error: 'dummy 사용자 등록을 실패했습니다.'
         });
     }
 }); // 2. 핸드폰 번호 등록
@@ -68,7 +68,7 @@ router.put('/me', function(req, res, next) {
             menu.files.push({url : url.resolve(ecTo ,'/images/' + filename)});
 
             res.send({
-                message: '프로필 사진의 변경을 성공하였습니다.',
+                result: '프로필 사진의 변경을 성공하였습니다.',
                 temp : menu
             });
     });
@@ -76,7 +76,7 @@ router.put('/me', function(req, res, next) {
 
 router.delete('/', function(req, res, next) {
     var userId = req.body.user_id;
-    res.send({ message: userId +' : 회원 탈퇴가 처리되었습니다.' });
+    res.send({ result: userId +' : 회원 탈퇴가 처리되었습니다.' });
 }); // 7. 회원 탈퇴 하기
 
 module.exports = router;
