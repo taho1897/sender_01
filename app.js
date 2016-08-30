@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 
 
-app.use('/auth', auth);
+// app.use('/auth', auth);
 app.use('/boards', board);
 app.use('/chattings', chatting);
 app.use('/contracts', contract);
