@@ -2,6 +2,23 @@ var express = require('express');
 var router = express.Router();
 // var isAuthenticated = require('./common').isAuthenticated;
 
+router.post('/', function(req, res, next) {
+    var userId = req.body.user_id;
+    var contractId = req.body.contract_id;
+    var content = req.body.content;
+    var star = req.body.star;
+
+    res.send({
+        result: '리뷰 등록에 성공했습니다.',
+        temp: {
+            user_id: userId,
+            contract_id: contractId,
+            content: content,
+            star: star
+        }
+    });
+});
+
 router.get('/', function(req, res, next) {
     if (req.url.match(/\/\?currentPage=\d+&itemsPerPage=\d+&deliverer_id=\d+/i)) { // 주문 목록 조회 req.url: /?pageNo=1&rowCount=10
 
