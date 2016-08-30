@@ -1,13 +1,13 @@
 
 
-function isAuthenticated(req, res, next) {
+/*function isAuthenticated(req, res, next) {
     if (!req.user) {
         return res.status(401).send({
             error: 'Login Required'
         });
     }
     next();
-}
+}*/
 
 function isSecure (req, res, next) {// HTTPS 사용 위해 추가
     if(!req.secure) {
@@ -18,5 +18,5 @@ function isSecure (req, res, next) {// HTTPS 사용 위해 추가
     next();
 }
 
-module.exports.isAuthenticated = isAuthenticated;
+// module.exports.isAuthenticated = isAuthenticated;
 module.exports.isSecure = isSecure;// HTTPS 사용 위해 추가

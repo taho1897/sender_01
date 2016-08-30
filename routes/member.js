@@ -32,6 +32,7 @@ router.get('/me', isSecure, function(req, res, next) {
             deliver_com : 1, //배달 완료 횟수
             deliver_req : 5, // 배달 요청 횟수
             pic : ecTo + '/images/upload_20c413748c8b88ae38a10c03370cc850.jpg',
+            star : 6.5,
             activation : 1 // 활성화 유무
         }
     });
@@ -49,7 +50,7 @@ router.get('/:user_id', isSecure, function(req, res, next) {
             deliver_com: 3,
             deliver_req: 1,
             pic: ecTo + '/images/upload_01bd18c7dd4fa45013be85aef8ed10a5.jpg',
-            activation: 1
+            star: 8.5
         }
     });
 }); // 4. 특정 사용자의 정보 보기
