@@ -32,12 +32,12 @@ function findUser(userId, callback) {
                 return callback(err);
             }
             var user = {};
-            user.id = result[0].id;
-            user.api_id = result[0].api_id;
-            user.api_type = result[0].api_type;
-            user.introduction = result[0].introduction;
-            user.deliver_com = result[0].deliver_com;
-            user.deliver_req = result[0].deliver_req;
+            user.id = result[0].id || 1;
+            user.api_id = result[0].api_id || 123132;
+            user.api_type = result[0].api_type || 0;
+            user.introduction = result[0].introduction || '';
+            user.deliver_com = result[0].deliver_com || 0;
+            user.deliver_req = result[0].deliver_req || 0;
             return callback(null, user);
         });
     });
