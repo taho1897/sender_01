@@ -42,6 +42,7 @@ router.get('/', isSecure, function(req, res, next) {
         res.send({
             result: {
                 sender_id: '1',
+                nickname: '개똥이',
                 here_lat: '37.455955',
                 here_lon: '126.95366',
                 addr_lat : '37.466286',
