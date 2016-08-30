@@ -16,7 +16,10 @@ router.post('/', isSecure, function(req, res, next) {
         if (err) {return next(err);}
         var temp = {};
         temp.user_id = fields.user_id;
-        temp.addr = fields.addr;
+        temp.here_lat = fields.here_lat;
+        temp.here_lon = fields.here_lon;
+        temp.addr_lat = fields.addr_lat;
+        temp.addr_lon = fields.addr_lon;
         temp.rec_phone = fields.rec_phone;
         temp.price = fields.price;
         temp.info = fields.info;
@@ -39,19 +42,21 @@ router.get('/', isSecure, function(req, res, next) {
         res.send({
             result: {
                 sender_id: '1',
-                    addr_lat : '37.466286',
-                    addr_lon : '126.960546',
-                    info : "도자기",
-                    arr_time: "2016-08-01T10:30:00.000Z",
-                    rec_phone: "010-6351-5707",
-                    price: 5000,
-                    memo: "깨지기 쉬워요",
-                    pic: [
-                    {
-                        "originalFilename": "1.jpg",
-                        "fileUrl": "http://localhost:8080/sending_images/1.jpg"
-                    }
-                ]
+                here_lat: '37.455955',
+                here_lon: '126.95366',
+                addr_lat : '37.466286',
+                addr_lon : '126.960546',
+                info : "도자기",
+                arr_time: "2016-08-01T10:30:00.000Z",
+                rec_phone: "010-6351-5707",
+                price: 5000,
+                memo: "깨지기 쉬워요",
+                pic: [
+                {
+                    "originalFilename": "1.jpg",
+                    "fileUrl": "http://localhost:8080/sending_images/1.jpg"
+                }
+            ]
         }
 
 
