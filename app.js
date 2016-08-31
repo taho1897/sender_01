@@ -17,6 +17,7 @@ var contract = require('./routes/contract');
 var member = require('./routes/member');
 var notice = require('./routes/notice');
 var review = require('./routes/review');
+var notification = require('./routes/notification');
 
 var app = express();
 app.set('env', 'development');
@@ -60,7 +61,7 @@ app.use('/contracts', contract);
 app.use('/members', member);
 app.use('/notices', notice);
 app.use('/reviews', review);
-
+app.use('/notification', notification);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

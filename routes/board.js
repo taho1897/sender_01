@@ -17,7 +17,7 @@ router.post('/', isSecure, function(req, res, next) {
         var temp = {};
         var boardType = parseInt(fields.boardType);
         temp.boardType = boardType;
-        temp.nickname = fields.nickname;
+        temp.name = fields.name;
         temp.title = fields.title;
         temp.content = fields.content;
         temp.esType = fields.esType;
