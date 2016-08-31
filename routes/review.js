@@ -35,21 +35,21 @@ router.get('/', function(req, res, next) {
                 data: {
                     user_id: delivererId,
                     review: [{
-                        nickname: "Whizzard",
+                        name: "Whizzard",
                         content: "물건을 너무 막 다루셔서 좌절감이 듭니다",
                         star: 3,
                         date: "2016-08-11 17:05:25",
                         pic: ecTo + '/images/upload_cb20c85de8fbdafa8b15c57f13f337f8.jpeg'
                     },
                         {
-                            nickname: "Scovac",
+                            name: "Scovac",
                             content: "깨지기 쉬운 물건인데 너무 막 다루시네요",
                             star: 1,
                             date: "2016-08-13 17:05:25",
                             pic: ecTo + '/images/upload_c2342deaf4438d59671de5083798b8f6.jpg'
                         },
                         {
-                            nickname: "Armand",
+                            name: "Armand",
                             content: "채팅을 너무 성의 없게 한다",
                             star: 4,
                             date: "2016-08-11 17:05:25",

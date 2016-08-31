@@ -46,7 +46,7 @@ router.get('/', isSecure, function(req, res, next) {
             result: {
                 sending_id: '1',
                 contract_id: '22',
-                nickname: '개똥이',
+                name: '개똥이',
                 here_lat: '37.455955',
                 here_lon: '126.95366',
                 addr_lat : '37.466286',
@@ -83,7 +83,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 data: [{
                     delivering_id: 1,
                     user_id: 1,
-                    nickname: "젠가",
+                    name: "젠가",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_d87be93afe6b958bc06b6ea66e08cb1d.jpg',
@@ -94,7 +94,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 2,
                     user_id: 21,
-                    nickname: "트롬베",
+                    name: "트롬베",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_ddbf77112816eb5009d8b58aabbcbdd9.jpg',
@@ -105,7 +105,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 3,
                     user_id: 12,
-                    nickname: "파인슈메커",
+                    name: "파인슈메커",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e3f936af3031701126cf8318fb804b26.jpeg',
@@ -116,7 +116,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 4,
                     user_id: 9,
-                    nickname: "앤디",
+                    name: "앤디",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e6acb29fd442b9988898de556d2adc01.jpg',
@@ -127,7 +127,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 5,
                     user_id: 5,
-                    nickname: "오마르",
+                    name: "오마르",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e98cfea2fdb0b14c739195e8daa75cb2.jpg',
@@ -138,7 +138,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 6,
                     user_id: 41,
-                    nickname: "MAXX",
+                    name: "MAXX",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_ee19916cc5a5e590343966a7c86d6de8.jpeg',
@@ -149,7 +149,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 7,
                     user_id: 88,
-                    nickname: "스코박",
+                    name: "스코박",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_f0c8a44fe9a5156b316406193046bfd9.png',
@@ -160,7 +160,7 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                 }, {
                     delivering_id: 8,
                     user_id: 23,
-                    nickname: "발렌시아",
+                    name: "발렌시아",
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_f2aa3fe1070d2911d7294ebc89c3e42b.jpg',
@@ -185,7 +185,7 @@ router.get('/deliverings/:delivering_id', isSecure, function(req, res, next) {
         result : {
             delivering_id : 33,
             user_id : 1,
-            nickname : 'Chaos Theory',
+            name : 'Chaos Theory',
             here_lat : '37.476807',
             here_lon : '126.963584',
             next_lat : '47.476807',
