@@ -89,8 +89,9 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     pic : ecTo + '/images/upload_d87be93afe6b958bc06b6ea66e08cb1d.jpg',
                     here_lat: '37.476807',
                     here_lon: '126.963584',
-                    next_lat: '47.476807',
-                    next_lon: '136.963584'
+                    next_lat: '37.475801',
+                    next_lon: '126.963684'
+                    // 37.473280, 126.967847
                 }, {
                     delivering_id: 2,
                     user_id: 21,
@@ -98,10 +99,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_ddbf77112816eb5009d8b58aabbcbdd9.jpg',
-                    here_lat: '38.476807',
-                    here_lon: '126.963584',
-                    next_lat: '48.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.476358',
+                    here_lon: '126.963475',
+                    next_lat: '37.410257',
+                    next_lon: '126.961427'
                 }, {
                     delivering_id: 3,
                     user_id: 12,
@@ -109,10 +110,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e3f936af3031701126cf8318fb804b26.jpeg',
-                    here_lat: '39.476807',
-                    here_lon: '126.963584',
-                    next_lat: '49.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.480007',
+                    here_lon: '126.963412',
+                    next_lat: '37.500007',
+                    next_lon: '126.912587'
                 }, {
                     delivering_id: 4,
                     user_id: 9,
@@ -120,10 +121,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e6acb29fd442b9988898de556d2adc01.jpg',
-                    here_lat: '36.476807',
-                    here_lon: '126.963584',
-                    next_lat: '46.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.432145',
+                    here_lon: '126.943584',
+                    next_lat: '37.423821',
+                    next_lon: '126.962474'
                 }, {
                     delivering_id: 5,
                     user_id: 5,
@@ -131,10 +132,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e98cfea2fdb0b14c739195e8daa75cb2.jpg',
-                    here_lat: '35.476807',
-                    here_lon: '126.963584',
-                    next_lat: '45.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.415407',
+                    here_lon: '126.964240',
+                    next_lat: '37.402507',
+                    next_lon: '126.942584'
                 }, {
                     delivering_id: 6,
                     user_id: 41,
@@ -142,10 +143,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_ee19916cc5a5e590343966a7c86d6de8.jpeg',
-                    here_lat: '34.476807',
-                    here_lon: '126.963584',
-                    next_lat: '44.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.476107',
+                    here_lon: '126.962084',
+                    next_lat: '37.472807',
+                    next_lon: '126.942584'
                 }, {
                     delivering_id: 7,
                     user_id: 88,
@@ -153,10 +154,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_f0c8a44fe9a5156b316406193046bfd9.png',
-                    here_lat: '33.476807',
-                    here_lon: '126.963584',
-                    next_lat: '43.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.446807',
+                    here_lon: '126.963884',
+                    next_lat: '37.436807',
+                    next_lon: '126.961584'
                 }, {
                     delivering_id: 8,
                     user_id: 23,
@@ -164,10 +165,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_f2aa3fe1070d2911d7294ebc89c3e42b.jpg',
-                    here_lat: '32.476807',
-                    here_lon: '126.963584',
-                    next_lat: '42.476807',
-                    next_lon: '136.963584'
+                    here_lat: '37.476807',
+                    here_lon: '126.943574',
+                    next_lat: '37.4763017',
+                    next_lon: '126.962544'
                 }]
 
             }
@@ -187,9 +188,9 @@ router.get('/deliverings/:delivering_id', isSecure, function(req, res, next) {
             user_id : 1,
             name : 'Chaos Theory',
             here_lat : '37.476807',
-            here_lon : '126.963584',
-            next_lat : '47.476807',
-            next_lon : '136.963584',
+            here_lon : '126.807584',
+            next_lat : '37.476807',
+            next_lon : '126.800584',
             dep_time : '2016-08-24 18:01:00',
             arr_time : '2016-08-24 19:30:00'
         }
