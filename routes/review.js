@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 // var isAuthenticated = require('./common').isAuthenticated;
+var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com';
 
 router.post('/', function(req, res, next) {
     var userId = req.body.user_id;
@@ -34,22 +35,25 @@ router.get('/', function(req, res, next) {
                 data: {
                     user_id: delivererId,
                     review: [{
-                        reviewer_id: "Whizzard",
+                        nickname: "Whizzard",
                         content: "물건을 너무 막 다루셔서 좌절감이 듭니다",
                         star: 3,
-                        date: "2016-08-11 17:05:25"
+                        date: "2016-08-11 17:05:25",
+                        pic: ecTo + '/images/upload_cb20c85de8fbdafa8b15c57f13f337f8.jpeg'
                     },
                         {
-                            reviewer_id: "Scovac",
+                            nickname: "Scovac",
                             content: "깨지기 쉬운 물건인데 너무 막 다루시네요",
                             star: 1,
-                            date: "2016-08-13 17:05:25"
+                            date: "2016-08-13 17:05:25",
+                            pic: ecTo + '/images/upload_c2342deaf4438d59671de5083798b8f6.jpg'
                         },
                         {
-                            reviewer_id: "Armand",
+                            nickname: "Armand",
                             content: "채팅을 너무 성의 없게 한다",
                             star: 4,
-                            date: "2016-08-11 17:05:25"
+                            date: "2016-08-11 17:05:25",
+                            pic: ecTo + '/images/upload_c201bd4dc1f338ef963fb52ac088b666.jpg'
                         }]
                 }
             }
