@@ -29,7 +29,10 @@ router.post('/', isSecure, function(req, res, next) {
         var filename = path.basename(files.pic.path);
         temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
         res.send({
-            result :  '배송 요청이 등록되었습니다.',
+            result : {
+                sending_id : 25,
+                contract_id : 51
+            },
             temp : temp
         });
 
@@ -41,14 +44,14 @@ router.get('/', isSecure, function(req, res, next) {
     if(req.url.match(/\/\?sender=\d+/i)) {
         res.send({
             result: {
-                sender_id: '1',
+                sending_id: '1',
                 nickname: '개똥이',
                 here_lat: '37.455955',
                 here_lon: '126.95366',
                 addr_lat : '37.466286',
                 addr_lon : '126.960546',
                 info : "도자기",
-                arr_time: "2016-08-01T10:30:00.000Z",
+                arr_time: "2016-08-01 10:30:00",
                 rec_phone: "010-6351-5707",
                 price: 5000,
                 memo: "깨지기 쉬워요",
@@ -80,65 +83,72 @@ router.get('/delivering', isSecure, function(req, res, next) {
                 totalPage: 10,
                 currentPage: currentPage,
                 itemsPerPage: itemsPerPage,
-                data: {
-                    deliverer: [{
-                        deliverer_id: 1,
-                        user_id: 1,
-                        here_lat: '37.476807',
-                        here_lon: '126.963584',
-                        next_lat: '47.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 2,
-                        user_id: 21,
-                        here_lat: '38.476807',
-                        here_lon: '126.963584',
-                        next_lat: '48.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 3,
-                        user_id: 12,
-                        here_lat: '39.476807',
-                        here_lon: '126.963584',
-                        next_lat: '49.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 4,
-                        user_id: 9,
-                        here_lat: '36.476807',
-                        here_lon: '126.963584',
-                        next_lat: '46.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 5,
-                        user_id: 5,
-                        here_lat: '35.476807',
-                        here_lon: '126.963584',
-                        next_lat: '45.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 6,
-                        user_id: 41,
-                        here_lat: '34.476807',
-                        here_lon: '126.963584',
-                        next_lat: '44.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 7,
-                        user_id: 88,
-                        here_lat: '33.476807',
-                        here_lon: '126.963584',
-                        next_lat: '43.476807',
-                        next_lon: '136.963584'
-                    }, {
-                        deliverer_id: 8,
-                        user_id: 23,
-                        here_lat: '32.476807',
-                        here_lon: '126.963584',
-                        next_lat: '42.476807',
-                        next_lon: '136.963584'
-                    }]
-                }
+                data: [{
+                    delivering_id: 1,
+                    user_id: 1,
+                    nickname: "젠가",
+                    here_lat: '37.476807',
+                    here_lon: '126.963584',
+                    next_lat: '47.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 2,
+                    user_id: 21,
+                    nickname: "트롬베",
+                    here_lat: '38.476807',
+                    here_lon: '126.963584',
+                    next_lat: '48.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 3,
+                    user_id: 12,
+                    nickname: "파인슈메커",
+                    here_lat: '39.476807',
+                    here_lon: '126.963584',
+                    next_lat: '49.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 4,
+                    user_id: 9,
+                    nickname: "앤디",
+                    here_lat: '36.476807',
+                    here_lon: '126.963584',
+                    next_lat: '46.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 5,
+                    user_id: 5,
+                    nickname: "오마르",
+                    here_lat: '35.476807',
+                    here_lon: '126.963584',
+                    next_lat: '45.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 6,
+                    user_id: 41,
+                    nickname: "MAXX",
+                    here_lat: '34.476807',
+                    here_lon: '126.963584',
+                    next_lat: '44.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 7,
+                    user_id: 88,
+                    nickname: "스코박",
+                    here_lat: '33.476807',
+                    here_lon: '126.963584',
+                    next_lat: '43.476807',
+                    next_lon: '136.963584'
+                }, {
+                    delivering_id: 8,
+                    user_id: 23,
+                    nickname: "발렌시아",
+                    here_lat: '32.476807',
+                    here_lon: '126.963584',
+                    next_lat: '42.476807',
+                    next_lon: '136.963584'
+                }]
+
             }
         });
     } else {
@@ -148,19 +158,19 @@ router.get('/delivering', isSecure, function(req, res, next) {
     }
 }); // 10. 배달 가기 목록 보기
 
-router.get('/delivering/:deliverer_id', isSecure, function(req, res, next) {
+router.get('/delivering/:delivering_id', isSecure, function(req, res, next) {
     var id = req.params.deliverer_id;
     res.send({
         result : {
-            deliverer : {
-                user_id : 1,
-                here_lat : '37.476807',
-                here_lon : '126.963584',
-                next_lat : '47.476807',
-                next_lon : '136.963584',
-                dep_time : '2016-08-24 18:01:00',
-                arr_time : '2016-08-24 19:30:00'
-            }
+            delivering_id : 33,
+            user_id : 1,
+            nickname : 'Chaos Theory',
+            here_lat : '37.476807',
+            here_lon : '126.963584',
+            next_lat : '47.476807',
+            next_lon : '136.963584',
+            dep_time : '2016-08-24 18:01:00',
+            arr_time : '2016-08-24 19:30:00'
         }
     });
 }); // 11. ‘배달가기’ 상세 목록 보기
@@ -173,7 +183,9 @@ router.post('/delivering', isSecure, function(req, res, next) {
     temp.dep_time = req.body.dep_time;
     temp.arr_time = req.body.arr_time;
     res.send({
-        result : '배달 가기 정보를 등록했습니다.',
+        result : {
+            delivering_id : 11
+        },
         temp : temp
     });
 
@@ -181,8 +193,8 @@ router.post('/delivering', isSecure, function(req, res, next) {
 
 router.put('/', function(req, res, next) {
     var temp = {};
-    temp.sender_id = req.body.sender_id;
-    temp.deliverer_id = req.body.deliverer_id;
+    temp.sending_id = req.body.sending_id;
+    temp.delivering_id = req.body.delivering_id;
     temp.state = req.body.state;
     res.send({
         result : '계약이 체결 되었습니다.',
@@ -195,7 +207,7 @@ router.get('/:contract_id', isSecure, function(req, res, next) {
     res.send({
         result : {
             contract_id : contract_id,
-            sender_id : 1,
+            sending_id : 1,
             deliverer_id : 1,
             req_time : '2016-08-24 18:01:00',
             res_time : '2016-08-24 19:30:00',

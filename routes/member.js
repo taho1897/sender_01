@@ -25,7 +25,7 @@ router.get('/me', isSecure, function(req, res, next) {
     res.send({
         result: {
             user_id : 1,
-            name : '홍길동',
+            nickname : '홍길동',
             email : 'hong123@hwalbin.com',
             phone : "010-1234-5678",
             introduction : '저는 안산에 살고 있습니다.', // 자기소개 내용
@@ -43,7 +43,7 @@ router.get('/:user_id', isSecure, function(req, res, next) {
     res.send({
         result : {
             user_id: userId,
-            name: '홍길동생',
+            nickname: '홍길동생',
             email: 'hongsang@hwalbin.com',
             phone: '010-1111-1111',
             introduction: '나는 홍길동의 동생입니다.',
