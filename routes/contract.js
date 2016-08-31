@@ -40,11 +40,12 @@ router.post('/', isSecure, function(req, res, next) {
 }); // 8. 배송 요청 등록 및 미체결 계약 생성
 
 router.get('/', isSecure, function(req, res, next) {
-    var sender = req.query.sender;
-    if(req.url.match(/\/\?sender=\d+/i)) {
+    var sender = req.query.delivering_id;
+    if(req.url.match(/\/\?delivering_id=\d+/i)) {
         res.send({
             result: {
                 sending_id: '1',
+                contract_id: '22',
                 nickname: '개똥이',
                 here_lat: '37.455955',
                 here_lon: '126.95366',
@@ -56,16 +57,12 @@ router.get('/', isSecure, function(req, res, next) {
                 price: 5000,
                 memo: "깨지기 쉬워요",
                 pic: [
-                {
-                    "originalFilename": "1.jpg",
-                    "fileUrl": "http://localhost:8080/sending_images/1.jpg"
-                }
-            ]
-        }
-
-
-
-
+                    {
+                        "originalFilename": "1.jpg",
+                        "fileUrl": ecTo + '/images/upload_78f6eeaee4bc2c5e7bc0afad83220022.jpeg'
+                    }
+                ]
+            }
         });
     } else {
         res.send({
@@ -192,14 +189,22 @@ router.post('/delivering', isSecure, function(req, res, next) {
 }); // 12. ‘배달 가기’ 등록
 
 router.put('/', function(req, res, next) {
+
     var temp = {};
-    temp.sending_id = req.body.sending_id;
-    temp.delivering_id = req.body.delivering_id;
-    temp.state = req.body.state;
+    temp.contract_id = parseInt(req.body.contract_id);
+    temp.state = parseInt(req.body.state);
+
+    if (temp.state !== 0) {
+        return res.send({
+            result: '계약이 체결되었습니다.',
+            temp: temp
+        })
+    }
     res.send({
-        result : '계약이 체결 되었습니다.',
-        temp : temp
-    });
+        result: '계약이 거절되었습니다',
+        temp: temp
+    })
+
 }); // 13. 계약 체결하기
 
 router.get('/:contract_id', isSecure, function(req, res, next) {
