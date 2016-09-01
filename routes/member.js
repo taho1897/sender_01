@@ -55,6 +55,15 @@ router.get('/:user_id', isSecure, function(req, res, next) {
     });
 }); // 4. 특정 사용자의 정보 보기
 
+router.get('/me/deliverings', function(req, res, next) {
+   res.send({
+       result : {
+           totalCount : 3,
+           name : ['오마르', '앤디', 'MAXX']
+        }
+   });
+});
+
 router.put('/me', function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;

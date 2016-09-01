@@ -41,6 +41,11 @@ router.post('/', isSecure, function(req, res, next) {
                 result : '신고가 성공적으로 등록되었습니다.',
                 temp : temp
             });
+        } else if (boardType === 2) { // 문의
+            res.send({
+                result : '문의가 성공적으로 등록되었습니다.',
+                temp : temp
+            });
         } else {
             res.send({
                error : '칭찬/신고 등록을 실패했습니다.'

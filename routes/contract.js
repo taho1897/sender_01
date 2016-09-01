@@ -5,7 +5,8 @@ var path = require('path');
 var url = require('url');
 var isSecure = require('./common').isSecure;
 var isAuthenticated = require('./common').isAuthenticated;
-var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com:80';
+var ecTo = 'http://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com';
+var ecToS = 'https://ec2-52-78-70-38.ap-northeast-2.compute.amazonaws.com';
 
 router.post('/', isSecure, function(req, res, next) {
     var form = new formidable.IncomingForm();
@@ -121,10 +122,10 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e6acb29fd442b9988898de556d2adc01.jpg',
-                    here_lat: '37.432145',
-                    here_lon: '126.943584',
-                    next_lat: '37.423821',
-                    next_lon: '126.962474'
+                    here_lat: '37.476580',
+                    here_lon: '126.958202',
+                    next_lat: '37.423202',
+                    next_lon: '126.962444'
                 }, {
                     delivering_id: 5,
                     user_id: 5,
@@ -132,9 +133,9 @@ router.get('/deliverings', isSecure, function(req, res, next) {
                     phone: '010-5252-2128',
                     star : 5.123,
                     pic : ecTo + '/images/upload_e98cfea2fdb0b14c739195e8daa75cb2.jpg',
-                    here_lat: '37.415407',
+                    here_lat: '37.476580',
                     here_lon: '126.964240',
-                    next_lat: '37.402507',
+                    next_lat: '37.402444',
                     next_lon: '126.942584'
                 }, {
                     delivering_id: 6,
