@@ -23,7 +23,7 @@ router.post('/', isSecure, function(req, res, next) {
             data.pic = [];
             data.pic.push(files.pic);
             var filename = path.basename(files.pic.path);
-            data.pic.push({url: url.resolve(ecTo, '/images/' + filename)});
+            data.pic.push({fileUrl: url.resolve(ecTo, '/images/' + filename)});
         }
         res.send({
             result : data
