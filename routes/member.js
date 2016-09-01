@@ -31,7 +31,7 @@ router.get('/me', isSecure, function(req, res, next) {
             introduction : '저는 안산에 살고 있습니다.', // 자기소개 내용
             deliver_com : 1, //배달 완료 횟수
             deliver_req : 5, // 배달 요청 횟수
-            pic : ecTo + '/images/upload_20c413748c8b88ae38a10c03370cc850.jpg',
+            fileUrl : ecTo + '/images/upload_20c413748c8b88ae38a10c03370cc850.jpg',
             star : 6.5,
             activation : 1 // 활성화 유무
         }
@@ -49,7 +49,7 @@ router.get('/:user_id', isSecure, function(req, res, next) {
             introduction: '나는 홍길동의 동생입니다.',
             deliver_com: 3,
             deliver_req: 1,
-            pic: ecTo + '/images/upload_01bd18c7dd4fa45013be85aef8ed10a5.jpg',
+            fileUrl: ecTo + '/images/upload_01bd18c7dd4fa45013be85aef8ed10a5.jpg',
             star: 8.5
         }
     });
@@ -75,11 +75,10 @@ router.put('/me', function(req, res, next) {
         menu.files = [];
             menu.files.push(files.pic);
             var filename = path.basename(files.pic.path);
-            menu.files.push({url : url.resolve(ecTo ,'/images/' + filename)});
+            menu.files.push({fileUrl : url.resolve(ecTo ,'/images/' + filename)});
 
             res.send({
-                result: '프로필 사진의 변경을 성공하였습니다.',
-                temp : menu
+                result: '프로필 사진의 변경을 성공하였습니다.'
             });
     });
 }); // 6. 자신의 프로필 사진 변경 하기

@@ -11,6 +11,7 @@ router.post('/', isSecure, function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;
+    form.uploadDir = path.join(__dirname, '../uploads/images/menus');
     form.parse(req, function(err, fields, files) {
         if (err) { return next(err);}
         var data = {};
@@ -20,7 +21,6 @@ router.post('/', isSecure, function(req, res, next) {
         if (files.pic) {
             var filename = path.basename(files.pic.path);
             data.fileUrl =  url.resolve(ecTo, '/images/' + filename);
-            form.uploadDir = path.join(__dirname, '../uploads/images/menus');
         }
         res.send({
             result : data

@@ -32,7 +32,7 @@ router.post('/', isSecure, function(req, res, next) {
         }
         if (files.pic) {
             var filename = path.basename(files.pic.path);
-            temp.pic.push({url: url.resolve(ecTo, '/images/' + filename)});
+            temp.pic.push({fileUrl: url.resolve(ecTo, '/images/' + filename)});
         }
 
         if (boardType === 0) { // 칭찬
