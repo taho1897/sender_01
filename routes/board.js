@@ -33,18 +33,15 @@ router.post('/', isSecure, function(req, res, next) {
         temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
         if (boardType === 0) { // 칭찬
             res.send({
-                result : '칭찬이 성공적으로 등록되었습니다.',
-                temp : temp
+                result : '칭찬이 성공적으로 등록되었습니다.'
             });
         } else if (boardType === 1) { // 신고
             res.send({
-                result : '신고가 성공적으로 등록되었습니다.',
-                temp : temp
+                result : '신고가 성공적으로 등록되었습니다.'
             });
         } else if (boardType === 2) { // 문의
             res.send({
-                result : '문의가 성공적으로 등록되었습니다.',
-                temp : temp
+                result : '문의가 성공적으로 등록되었습니다.'
             });
         } else {
             res.send({

@@ -62,7 +62,7 @@ router.get('/me/deliverings', function(req, res, next) {
            name : ['오마르', '앤디', 'MAXX']
         }
    });
-});
+}); // 5. 자신의 물품을 배송한 배달원 목록 보기
 
 router.put('/me', function(req, res, next) {
     var form = new formidable.IncomingForm();
@@ -82,11 +82,11 @@ router.put('/me', function(req, res, next) {
                 temp : menu
             });
     });
-}); // 5. 자신의 프로필 사진 변경 하기
+}); // 6. 자신의 프로필 사진 변경 하기
 
 router.delete('/', function(req, res, next) {
     var userId = req.body.user_id;
     res.send({ result: userId +' : 회원 탈퇴가 처리되었습니다.' });
-}); // 7. 회원 탈퇴 하기
+}); // 8. 회원 탈퇴 하기
 
 module.exports = router;
