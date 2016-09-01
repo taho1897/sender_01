@@ -13,7 +13,9 @@ router.post('/', isSecure, function(req, res, next) {
     form.multiples = true;
     form.uploadDir = path.join(__dirname, '../uploads/images/menus');
     form.parse(req, function(err, fields, files) {
-        if (err) { return next(err); }
+        if (err) {
+            return next(err);
+        }
         var temp = {};
         var boardType = parseInt(fields.boardType);
         temp.boardType = boardType;
@@ -28,9 +30,11 @@ router.post('/', isSecure, function(req, res, next) {
         } else if (files.pic) {
             temp.pic.push(files.pic);
         }
+        if (files.pic) {
+            var filename = path.basename(files.pic.path);
+            temp.pic.push({url: url.resolve(ecTo, '/images/' + filename)});
+        }
 
-        var filename = path.basename(files.pic.path);
-        temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
         if (boardType === 0) { // 칭찬
             res.send({
                 result : '칭찬이 성공적으로 등록되었습니다.'
