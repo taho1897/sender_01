@@ -14,7 +14,9 @@ router.post('/', isSecure, function(req, res, next) {
     form.multiples = true;
     form.uploadDir = path.join(__dirname, '../uploads/images/menus');
     form.parse(req, function(err, fields, files) {
-        if (err) {return next(err);}
+        if (err) {
+            return next(err);
+        }
         var temp = {};
         temp.user_id = fields.user_id;
         temp.here_lat = fields.here_lat;
@@ -27,8 +29,10 @@ router.post('/', isSecure, function(req, res, next) {
         temp.memo = fields.memo;
         temp.pic = [];
         temp.pic.push(files.pic);
-        var filename = path.basename(files.pic.path) || '';
-        temp.pic.push({url : url.resolve(ecTo,'/images/'+filename)});
+        if (file.pic) {
+            var filename = path.basename(files.pic.path);
+            temp.pic.push({fileUrl: url.resolve(ecTo, '/images/' + filename)});
+        }
         res.send({
             result : {
                 sending_id : 25,
