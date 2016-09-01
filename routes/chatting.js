@@ -11,19 +11,16 @@ router.post('/', isSecure, function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.multiples = true;
-    form.uploadDir = path.join(__dirname, '../uploads/images/menus');
     form.parse(req, function(err, fields, files) {
         if (err) { return next(err);}
         var data = {};
         data.receiverId = fields.receiver_id;
         data.name = fields.name;
         data.message = fields.message;
-
         if (files.pic) {
-            data.pic = [];
-            data.pic.push(files.pic);
             var filename = path.basename(files.pic.path);
-            data.pic.push({fileUrl: url.resolve(ecTo, '/images/' + filename)});
+            data.fileUrl =  url.resolve(ecTo, '/images/' + filename);
+            form.uploadDir = path.join(__dirname, '../uploads/images/menus');
         }
         res.send({
             result : data

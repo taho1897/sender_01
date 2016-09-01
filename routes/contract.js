@@ -29,7 +29,7 @@ router.post('/', isSecure, function(req, res, next) {
         temp.memo = fields.memo;
         temp.pic = [];
         temp.pic.push(files.pic);
-        if (file.pic) {
+        if (files.pic) {
             var filename = path.basename(files.pic.path);
             temp.pic.push({fileUrl: url.resolve(ecTo, '/images/' + filename)});
         }
