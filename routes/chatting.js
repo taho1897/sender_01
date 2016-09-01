@@ -25,7 +25,6 @@ router.post('/', isSecure, function(req, res, next) {
         res.send({
             result : data
         });
-
     });
 });
 
