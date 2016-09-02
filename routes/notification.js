@@ -36,8 +36,13 @@ router.post('/', function (req, res, next) {
 
 router.post('/chattings', function (req, res, next) {
     var receiverId = req.body.receiver_id;
+    var message = req.body.message;
+    var pic = req.body.pic;
     res.send({
-        result: '배송 요청 전송',
+        result: {
+            message : message,
+            pic : pic
+        },
         receiver: receiverId
     });
 });
