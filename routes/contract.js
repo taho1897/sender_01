@@ -238,7 +238,10 @@ router.put('/', function(req, res, next) {
     temp.state = parseInt(req.body.state);
     if (temp.state !== 0) {
         return res.send({
-            result: '계약이 체결되었습니다.'
+            result : {
+                sending_id : 1,
+                sending_user_id : 25
+            }
         });
     }
     res.send({
@@ -253,7 +256,9 @@ router.get('/:contract_id', isSecure, function(req, res, next) {
         result : {
             contract_id : contract_id,
             sending_id : 1,
-            deliverer_id : 1,
+            sending_user_id : 25,
+            delivering_id : 33,
+            delivering_user_id : 1,
             req_time : '2016-08-24 18:01:00',
             res_time : '2016-08-24 19:30:00',
             state : 2

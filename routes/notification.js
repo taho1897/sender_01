@@ -39,11 +39,12 @@ router.post('/chattings', function (req, res, next) {
     var message = req.body.message;
     var pic = req.body.pic;
     res.send({
-        result: {
+        result: 'success'
+        /*{
             message : message,
             pic : pic
         },
-        receiver: receiverId
+        receiver: receiverId*/
     });
 });
 

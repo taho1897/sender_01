@@ -29,13 +29,18 @@ router.post('/', isSecure, function(req, res, next) {
 });
 
 router.get('/' ,isSecure, function(req, res,next){
-    var data = {};
-    data.senderId = 97;
-    data.name = '지용운';
-    data.message = '자니?';
-    data.time = '2016-09-02 02:00:00';
+    var sender = {};
+    sender.id = 97;
+    sender.name = '지용운';
+    sender.fileUrl = ecTo + '/images/upload_01bd18c7dd4fa45013be85aef8ed10a5.jpg';
     res.send({
-      result : data
+      result : [
+          {
+              sender: sender,
+              message : '자니?',
+              date : '2016-08-29 13:20:11'
+          }
+          ]
    });
 });
 
