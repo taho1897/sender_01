@@ -34,6 +34,13 @@ router.post('/', function (req, res, next) {
     });*/
 });
 
+router.post('/chattings', function (req, res, next) {
+    var receiverId = req.body.receiver_id;
+    res.send({
+        result: '배송 요청 전송',
+        receiver: receiverId
+    });
+});
 
 
 module.exports = router;
