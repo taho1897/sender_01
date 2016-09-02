@@ -10,7 +10,7 @@ var redis = require('redis');
 var redisClient = redis.createClient();
 var RedisStore = require('connect-redis')(session);
 
-//var auth = require('./routes/auth');
+var auth = require('./routes/auth');
 var board = require('./routes/board');
 var chatting = require('./routes/chatting');
 var contract = require('./routes/contract');
@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));*/
 app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 
 
-// app.use('/auth', auth);
+app.use('/auth', auth);
 app.use('/boards', board);
 app.use('/chattings', chatting);
 app.use('/contracts', contract);
