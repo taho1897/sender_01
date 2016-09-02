@@ -28,4 +28,15 @@ router.post('/', isSecure, function(req, res, next) {
     });
 });
 
+router.get('/' ,isSecure, function(req, res,next){
+    var data = {};
+    data.senderId = 97;
+    data.name = '지용운';
+    data.message = '자니?';
+    data.time = '2016-09-02 02:00:00';
+    res.send({
+      result : data
+   });
+});
+
 module.exports = router;
