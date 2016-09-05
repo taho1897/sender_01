@@ -38,7 +38,7 @@ app.use(cookieParser());
 //   saveUninitialized: true
 // }));
 
-app.use(session({
+/*app.use(session({
   secret : process.env.SESSION_SECRET,
   store : new RedisStore({
     host : "127.0.0.1",
@@ -50,7 +50,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public'))); // FIXME : 주석을 풀었당
+app.use(express.static(path.join(__dirname, 'public')));*/
 app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 
 
