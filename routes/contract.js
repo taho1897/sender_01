@@ -223,31 +223,24 @@ router.post('/deliverings', isSecure, function(req, res, next) {
 
 }); // 13. ‘배달 가기’ 등록
 
-router.put('/deliverings', function(req, res, next) {
-    var temp = {};
-    temp.contract_id = req.body.contract_id;
-    temp.delivering_id = req.body.delivering_id;
-    res.send({
-        result : '배송 요청에 성공했습니다.'
-    });
-}); // 14. 계약 신청 하기
 
 router.put('/', function(req, res, next) {
     var temp = {};
     temp.contract_id = parseInt(req.body.contract_id);
-    temp.state = parseInt(req.body.state);
-    if (temp.state !== 0) {
+    if (parseInt(req.body.state) && parseInt(req.body.state) !== 0) {
+        temp.state = parseInt(req.body.state);
         return res.send({
             result : {
                 sending_id : 1,
                 sending_user_id : 25
             }
         });
+    } else {
+        temp.delivering_id = req.body.delivering_id;
+        res.send({
+            result : '배송 요청에 성공했습니다.'
+        });
     }
-    res.send({
-        result: '계약이 거절되었습니다'
-    });
-
 }); // 15. 계약 체결하기
 
 router.get('/:contract_id', isSecure, function(req, res, next) {
