@@ -81,7 +81,7 @@ router.get('/logout', isAuthenticated, function(req, res, next) {
     res.send({ result: 'local logout' });
 });
 
-router.post('/facebookektlgoq/token', passport.authenticate('facebook-token', {scope : ['email']}), function(req, res, next) {
+router.post('/facebook/token', passport.authenticate('facebook-token', {scope : ['email']}), function(req, res, next) {
     res.send(req.user ? 200 : 401);
 });
 
