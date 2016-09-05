@@ -38,7 +38,7 @@ app.use(cookieParser());
 //   saveUninitialized: true
 // }));
 
-/*app.use(session({
+app.use(session({
   secret : process.env.SESSION_SECRET,
   store : new RedisStore({
     host : "127.0.0.1",
@@ -47,10 +47,10 @@ app.use(cookieParser());
   }),
   resave : true, //변경 없으면 저장하지 말아라
   saveUninitialized : false // 저장된것 없으면 세션을 저장하지 말아라
-}));*/
-/*app.use(passport.initialize());
+}));
+app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));*/
+app.use(express.static(path.join(__dirname, 'public'))); // FIXME : 주석을 풀었당
 app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 
 

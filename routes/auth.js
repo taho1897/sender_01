@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-// var FacebookStrategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var FacebookTokenStrategy = require('passport-facebook-token');
 var Customer = require('../models/user');
 var isSecure = require('./common').isSecure;
@@ -76,13 +76,16 @@ router.post('/local/login', isSecure, function(req, res, next) {
     });
 });
 
-router.get('/logout', isAuthenticated, function(req, res, next) {
+router.get('/logout', function(req, res, next) { // FIXME : isAuthenticated 에러떠서 제거
     req.logout();
     res.send({ result: 'local logout' });
 });
 
 router.post('/facebook/token', passport.authenticate('facebook-token', {scope : ['email']}), function(req, res, next) {
-    res.send(req.user ? 200 : 401);
+   // res.send(req.user ? 200 : 401);
+    res.send({
+        result : 1
+    });
 });
 
 module.exports = router;
