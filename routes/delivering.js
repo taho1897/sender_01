@@ -155,3 +155,6 @@ router.post('/', isSecure, function(req, res, next) {
     });
 
 }); // 13. ‘배달 가기’ 등록
+
+
+module.exports = router;

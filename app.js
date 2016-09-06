@@ -58,12 +58,13 @@ app.use('/images',express.static(path.join(__dirname, 'uploads/images/menus')));
 app.use('/auth', auth);
 app.use('/boards', board);
 app.use('/chattings', chatting);
-app.use('/deliverings', delivering);
+
 app.use('/contracts', contract);
 app.use('/members', member);
 app.use('/notices', notice);
 app.use('/reviews', review);
 app.use('/notification', notification);
+app.use('/deliverings', delivering);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
