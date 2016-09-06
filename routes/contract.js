@@ -76,23 +76,31 @@ router.get('/', isSecure, function(req, res, next) {
 }); // 10. 배송 요청 보기
 
 router.put('/', function(req, res, next) {
-    var temp = {};
-    temp.contract_id = parseInt(req.body.contract_id);
-    if (parseInt(req.body.state) && parseInt(req.body.state) !== 0) {
-        temp.state = parseInt(req.body.state);
-        return res.send({
-            result : {
-                sending_id : 1,
-                sending_user_id : 25
-            }
-        });
-    } else {
-        temp.delivering_id = req.body.delivering_id;
-        res.send({
-            result : '배송 요청에 성공했습니다.'
-        });
-    }
-}); // 15. 계약 체결하기
+        var contract_id = parseInt(req.body.contract_id);
+        if (req.body.contract_id && req.body.state) {
+            var state = parseInt(req.body.state);
+            if (state === '1') { // 수락
+                res.send({
+                    result: { sending_id : 1 ,
+                              sending_user_id : 1
+                    }
+                });
+            } else if (state === '9') { // 거절
+                res.send({
+                    result: {message : '계약 체결을 거절했습니다. '}
+                });
+            } // elseif _9_
+        } else if (req.body.contract_id && req.body.delivering_id) {
+            var delivering_id = parseInt(req.body.delivering_id);
+                res.send({
+                    result: {message : '계약 신청에 성공했습니다.'}
+                });
+        } else {
+            res.send({
+                error : {message :'계약 체결 또는 계약 신청에 실패했습니다.'}
+            });
+        }
+}); // 15. 계약 신청 및 체결하기
 
 router.get('/:contract_id', isSecure, function(req, res, next) {
     var contract_id = req.params.contract_id;
