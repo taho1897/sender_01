@@ -135,7 +135,7 @@ router.get('/:delivering_id', isSecure, function(req, res, next) {
             here_lon : '126.807584',
             next_lat : '37.476807',
             next_lon : '126.800584',
-            dep_time : '2016-08-24 18:01:00',
+            dep_time : '2016-08- 18:01:00',
             arr_time : '2016-08-24 19:30:00'
         }
     });
